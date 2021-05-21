@@ -1,0 +1,95 @@
+public class Bolen {
+
+    public int ortakBolenlerinToplami(int a, int b){
+          int buyuk,toplam=0;
+            if(a>b){
+                buyuk=a;
+            }
+            else
+                buyuk=b;
+
+          for(int k=1;k<=buyuk;k++){
+              if(a%k==0 && b%k==0){
+                  toplam=toplam+k;
+              }
+          }
+
+            return toplam;
+        }
+
+}
+
+
+public class Tarih {
+    int gun;
+    int ay;
+    int yil;
+
+    public Tarih(int gun, int ay, int yil) {
+        this.gun = gun;
+        this.ay = ay;
+        this.yil = yil;
+    }
+
+    public int compareTo(Tarih obj){
+        int a = this.gun + this.ay*30 + this.yil*360;
+        int b = obj.gun + obj.ay*30 + obj.yil*360;
+        
+        if(a > b){
+            return 1;
+        }else if(a < b){
+            return -1;
+        }else{
+            return 0;
+        }
+        
+
+        // 1. soru icin bu methodu uygun sekilde doldurunuz. return satiri temsilidir, kaldirmaniz veya degistirmeniz gerekmektedir.
+
+    }
+}
+
+
+import java.lang.Math;
+import java.util.Random;
+
+public class Uzaklik {
+
+    int[][] noktalar;
+
+    public Uzaklik(int adet) {
+        noktalar = new int[adet][2];
+        Random rnd = new Random();
+        for (int i = 0; i < noktalar.length; i++) {
+            noktalar[i][0] = rnd.nextInt(1000);
+            noktalar[i][1] = rnd.nextInt(1000);
+        }
+    }
+
+    public double minimumUzaklik() {
+        double min = 999999;
+        double uzaklik;
+        
+        for (int i = 0; i < noktalar.length; i++) {
+            for(int j = 0; j<noktalar.length; j++){
+                
+                int y = noktalar[i][1]-noktalar[j][1];
+                int x = noktalar[i][0]-noktalar[j][0];
+                double toplam = Math.pow(x, 2) + Math.pow(y, 2);
+                
+                if(i!=j){
+                    uzaklik =  Math.pow(toplam, 0.5);
+                    if(uzaklik < min){
+                        min = uzaklik;
+                    }
+                }
+            }
+            
+        }
+
+       return min;
+    }
+      
+
+     
+}
